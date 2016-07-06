@@ -83,6 +83,9 @@ To track a large file using git-annex, use `git annex add <filename>`. You can n
 
 For more information, please see the [git-annex walkthrough](http://git-annex.branchable.com/walkthrough/) or the [gitlab documentation](http://docs.gitlab.com/ee/workflow/git_annex.html#using-gitlab-git-annex)
 
+Publishing data at Zenodo or Figshare and obtaining a citable DOI
+-----------------------------------------------------------------
+Have a look at [Git-RDM](https://github.com/ctjacobs/git-rdm), a Research Data Management (RDM) plugin for the Git
 
 Working together on the same clone
 ----------------------------------
