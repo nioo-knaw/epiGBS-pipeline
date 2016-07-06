@@ -81,7 +81,7 @@ git-annex allows you to manage large files with git without storing their conten
 
 To track a large file using git-annex, use `git annex add <filename>`. You can now do `git commit` as normal.
 
-For more information, please see the [git-annex walkthrough](http://git-annex.branchable.com/walkthrough/).
+For more information, please see the [git-annex walkthrough](http://git-annex.branchable.com/walkthrough/) or the [gitlab documentation](http://docs.gitlab.com/ee/workflow/git_annex.html#using-gitlab-git-annex)
 
 
 Working together on the same clone
