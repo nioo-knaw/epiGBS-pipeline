@@ -15,7 +15,7 @@ To start a new analysis project based on this skeleton, follow the following ste
 
 2. Rename the project.
 
-        mv project-skeleton my-project
+        mv nioo-project-skeleton my-project #("my-project" can be everything you think is appropriate)#
         cd my-project
 
 3. Go to our GitLab server and create a new project (click '+' in the menu bar).
