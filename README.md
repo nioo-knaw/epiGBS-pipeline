@@ -9,24 +9,21 @@ Starting a project
 
 To start a new analysis project based on this skeleton, follow the following steps:
 
-1. Clone the skeleton from our GitLab server.
+1. Fork the skeleton repository.
 
-        git clone git@gitlab.bioinf.nioo.knaw.nl:nioo-bioinformatics/nioo-project-skeleton.git
+        Click on the Fork button or go to https://gitlab.bioinf.nioo.knaw.nl/nioo-bioinformatics/nioo-project-skeleton/forks/new
 
-2. Rename the project.
+1. Rename the project.
 
-        mv nioo-project-skeleton my-project #("my-project" can be everything you think is appropriate)#
-        cd my-project
+        Click on the settings icon (top right) and select Edit Project
+        Scroll down to the Rename repository section and give your project a new name
 
-3. Go to our GitLab server and create a new project (click '+' in the menu bar).
+1. Review the other settings
 
-4. On the same page you can also choose to make your project public or not. Public repositories can be cloned by anyone, even without a NIOO account. By default, your repository will be private.
+        On the same page you can also choose to make your project public or not. Public repositories can be cloned by anyone, even without a NIOO account. By default, your repository will be internal.
 
-5. Change the remote 'origin' to your new project. You can find the new remote at the bottom of the webpage.
 
-        git remote set-url origin git@gitlab.bioinf.nioo.knaw.nl:nioo-bioinformatics/my-project.git
-
-6. In the *Settings* tab, click *Members* to add people that work on the same project.
+1. In the *Settings* tab, click *Members* to add people that work on the same project.
 
 Please start by replacing the contents of this README file with the appropriate content for your project.
 
