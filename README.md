@@ -25,6 +25,11 @@ To start a new analysis project based on this skeleton, follow the following ste
 
 1. In the *Settings* tab, click *Members* to add people that work on the same project.
 
+1. Create a local copy of the repository on the NIOO server
+
+        Advanced users can select the SSH option but beginners can better change it to HTTPS. Copy the url and run on your target location on the server:
+        git clone <your project url>
+
 Please start by replacing the contents of this README file with the appropriate content for your project.
 
 
