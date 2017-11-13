@@ -1,0 +1,3 @@
+[submodule "src/epiGBS"]
+	path = src/epiGBS
+	url = https://gitlab.bioinf.nioo.knaw.nl/FleurG/epiGBS.git
