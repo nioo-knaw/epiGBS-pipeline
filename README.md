@@ -134,19 +134,34 @@ H53KHCCXY       5       TTAC    CCAG    BUXTON_169      C       BUXTON  BUXTON_W
 H53KHCCXY       5       AGGC    CCAG    WUR_169 C       WUR     BUXTON_WUR_AseI_NsiI_final_run1 4       2       AseI    NsiI    3       3       Scabiosa columbaria
 H53KHCCXY       5       GAAGA   CCAG    BUXTON_175      SD      BUXTON  BUXTON_WUR_AseI_NsiI_final_run1 5       2       AseI    NsiI    3       3       Scabiosa columbaria
 H53KHCCXY       5       CCTTC   CCAG    WUR_175 SD      WUR     BUXTON_WUR_AseI_NsiI_final_run1 6       2       AseI    NsiI    3       3       Scabiosa columbaria
+```
 
 ##### Execute the pipeline
 
-Make sure that you are in the executive directory `HFC-permutation` and perform a dry run:
+Make sure that you are in the executive directory `analysis` and modify and execute the scripts in the following order:
+
+```bash
+cd analysis
+
+nano demultiplex.sh
+# adjust the --r1, --r2, --barcodes flags accordingle to your input names. Choose a name for --output_dir. Close nano with Ctrl+x
+# execute the bash script
+bash demultiplex.sh
+
+nano make_reference.sh
+# adjust all paths accordingly to your choices from the previous step
+bash make_reference.sh
+
+nano mapping_variant_calling.sh
+# # adjust all paths accordingly to your choices from the previous step, except path to --tmpdir
+bash mapping_variant_calling.sh
 ```
-snakemake -np
-```
-If everything looks fine, run the pipeline with:
-```
-snakemake -p
-```
+
+#### Test data
+
+You can access, copy or link test data from /data/tutorials/epiGBS/test_data/ and run the pipeline. 
 
 More Reading
 ------------------
 
-[PLINK 2.0 alpha](https://www.cog-genomics.org/plink/2.0/)
+[Nature methods](https://www.nature.com/articles/nmeth.3763)
