@@ -1,129 +1,152 @@
-Project skeleton
-================
+Contents
+========
 
-A skeleton Git repository for analysis projects.
+* [How to use this file](#how-to-use-this-file)
+* [Introduction](#introduction)
+* [Login on the server](#login-on-the-server)
+* [Copying the pipeline](#copying-the-pipeline)
+* [Directories](#directories)
+* [Prerequisites](#prerequisites)
+* [Start the pipeline](#start-the-pipeline)
+* [More Reading](#more-reading)
 
 
-Starting a project
+How to use this file
+---------------------
+
+This README file gives a global introduction on how to work on the server, cloning the pipeline repository and how to run the pipeline. We tried to be as complete and precise as possible.
+If you have any question, comment, complain or suggestion or if you encounter any conflicts or errors in this document or the pipeline, please contact your Bioinformatics Unit (Bioinformatics-support@nioo.knaw.nl) or open an `Issue`!
+
+###### Enjoy your analysis and happy results!
+
+```
+Text written in boxes is code, which usually can be executed in your Linux terminal. You can just copy/paste it.
+Sometimes it is "special" code for R or any other language. If this is the case, it will be explicitly mentioned in the instructions.
+```
+
+`Text in a red box indicates directory or file names`
+
+Text in brackets "<>" indicates that you have to replace it and the brackets by your own appropiate text.
+
+Introduction
+------------
+
+epiGBSia a reduced representation bisulfite sequencing method for cost-effective exploration and comparative analysis of DNA methylation and genetic variation in hundreds of samples de novo. This method uses genotyping by sequencing of bisulfite-converted DNA followed by reliable de novo reference construction, mapping, variant calling, and distinction of single-nucleotide polymorphisms (SNPs) versus methylation variation.
+
+This pipeline is cloned from https://github.com/thomasvangurp/epiGBS and adapted to run in a conda environment on the NIOO-bioinformatics servers.
+
+The original reference is accessible [here](https://www.nature.com/articles/nmeth.3763).
+
+
+Login on the server
 ------------------
 
-To start a new analysis project based on this skeleton, follow the following steps:
+If you will login to the bioinformatics server for the first time, please contact the BU or refer to the tutorial on gitlab (https://gitlab.bioinf.nioo.knaw.nl/tutorials/server-login) or download the corresponding .pdf from the left hand site on the intranet (https://intranet.nioo.knaw.nl/en/bioinformatics-unit).
 
-1. Fork the skeleton repository.
+Copying the pipeline
+------------------
 
-        Click on the Fork button or go to https://gitlab.bioinf.nioo.knaw.nl/nioo-bioinformatics/nioo-project-skeleton/forks/new
+To start a new analysis project based on this pipeline, follow the following steps:
 
-1. Rename the project.
+- Clone and rename the pipeline-skeleton from our GitLab server by typing in the terminal. Replace <name> by your NIOO login-name. Cloning will only work, if you have logged in to gitlab at least once before:
 
-        Click on the settings icon (top right) and select Edit Project
-        Scroll down to the Rename repository section and give your project a new name
+```
+git clone https://gitlab.bioinf.nioo.knaw.nl/pipelines/epiGBS.git
+```
 
-1. Review the other settings
+- Enter `epiGBS` and download epiGBS code
 
-        On the same page you can also choose to make your project public or not. Public repositories can be cloned by anyone, even without a NIOO account. By default, your repository will be internal.
+```
+cd epiGBS
+git submodule init
+git submodule update
+```
 
+Directories
+--------------------------
 
-1. In the *Settings* tab, click *Members* to add people that work on the same project.
+##### The toplevel `README` file
 
-1. Create a local copy of the repository on the NIOO server
+This file contains this content with general information about how to run this pipeline.
 
-        Advanced users can select the SSH option but beginners can better change it to HTTPS. Copy the url and run on your target location on the server:
-        git clone <your project url>
+##### The `data` directory
 
-Please start by replacing the contents of this README file with the appropriate content for your project.
+Place your epiGBS read files here.
 
+##### The `src` directory
 
-Project structure
------------------
+Contains the code of the epiGBS pipeline.
 
-Ideally, every directory in the project has a README file containing enough information for new people to be able to interpret what's in the directory and to work with it.
+##### The `docs` directory
 
+Here, you can store all other files, like metadata etc.
 
-### The toplevel `README` file
+##### The `analysis` directory
 
-This file contains general information about the project, for example:
+This is the directory, where you will analyse your data and all output will be generated.
 
-- Who leads the project.
-- Who participates in the project.
-- The amount of hours people have spent on this project.
+Prerequisites
+------------------
 
+You have to install different dependencies using conda before starting the pipeline for the first time:
 
-### The `doc` directory
+```
+conda env create -f environment.yaml
+source activate epiGBS
+```
 
-Documentation on the project, such as annotated sample lists, goal of the project, related work and literature.
+if you already have created the environment `epiGBS` before, than activate it by
 
+```
+source activate epiGBS
+```
 
-### The `data` directory
+You can deactivate the environment after pipeline execution with
 
-Used to store all raw (i.e., delivered by the scientist or from elsewhere. Please provide additional notes in a README file.
+```
+source deactivate
+```
 
-Also see *Working with large files* below.
+Start the pipeline
+------------------
 
+##### Activate the epiGBS environment
 
-### The `analysis` directory
+(see [Prerequisites](#prerequisites) for detailed instructions).
+```
+source activate epiGBS
+```
 
-All analysis is stored here, including run scripts, Make files and result files.
+##### Add read files in the `data` directory.
 
-Please try to separate self-contained parts of the analysis in their own subdirectories and document dependencies in a README file.
+see [Directories](#directories)
 
-Also see *Working with large files* below.
+##### Make a barcode file and add to the `data` directory
 
+The barcode file is tab-delimited and contains at least the following columns: `Flowcell`, `Lane`, `Barcode_R1`, `Barcode_R2`, `Barcode_R2`, `Sample`, `ENZ_R1`, `ENZ_R2`, `Wobble_R1`, `Wobble_R2`. All other fields are mandatory.
 
-### The `src` directory
+```bash
+# barcodes.tsv
+Flowcell        Lane    Barcode_R1      Barcode_R2      Sample  history Country PlateName       Row     Column  ENZ_R1  ENZ_R2  Wobble_R1       Wobble_R2       Species
+H53KHCCXY       5       AACT    CCAG    BUXTON_178      C       BUXTON  BUXTON_WUR_AseI_NsiI_final_run1 1       2       AseI    NsiI    3       3       Scabiosa columbaria
+H53KHCCXY       5       CCTA    CCAG    WUR_178 C       WUR     BUXTON_WUR_AseI_NsiI_final_run1 2       2       AseI    NsiI    3       3       Scabiosa columbaria
+H53KHCCXY       5       TTAC    CCAG    BUXTON_169      C       BUXTON  BUXTON_WUR_AseI_NsiI_final_run1 3       2       AseI    NsiI    3       3       Scabiosa columbaria
+H53KHCCXY       5       AGGC    CCAG    WUR_169 C       WUR     BUXTON_WUR_AseI_NsiI_final_run1 4       2       AseI    NsiI    3       3       Scabiosa columbaria
+H53KHCCXY       5       GAAGA   CCAG    BUXTON_175      SD      BUXTON  BUXTON_WUR_AseI_NsiI_final_run1 5       2       AseI    NsiI    3       3       Scabiosa columbaria
+H53KHCCXY       5       CCTTC   CCAG    WUR_175 SD      WUR     BUXTON_WUR_AseI_NsiI_final_run1 6       2       AseI    NsiI    3       3       Scabiosa columbaria
 
-Any custom scripts and specific software versions for this project can be stored here. But please consider moving things to their own repository when you think they might be useful for other projects as well.
+##### Execute the pipeline
 
+Make sure that you are in the executive directory `HFC-permutation` and perform a dry run:
+```
+snakemake -np
+```
+If everything looks fine, run the pipeline with:
+```
+snakemake -p
+```
 
-Working with large files
-------------------------
+More Reading
+------------------
 
-Since storage on our GitLab server and desktop computers is limited, it is not a good idea to track very large files directly in the repository. However, we do want to have some way to track our input and output data (which is usually quite large). A solution for this is provided by [git-annex](http://git-annex.branchable.com/).
-
-git-annex allows you to manage large files with git without storing their contents in git. It works by storing file checksums in git instead of their contents.
-
-To track a large file using git-annex, use `git annex add <filename>`. You can now do `git commit` as normal.
-
-For more information, please see the [git-annex walkthrough](http://git-annex.branchable.com/walkthrough/) or the [gitlab documentation](http://docs.gitlab.com/ee/workflow/git_annex.html#using-gitlab-git-annex)
-
-Publishing data at Zenodo or Figshare and obtaining a citable DOI
------------------------------------------------------------------
-Have a look at [Git-RDM](https://github.com/ctjacobs/git-rdm), a Research Data Management (RDM) plugin for the Git
-
-Working together on the same clone
-----------------------------------
-
-If you need to work with other people on the same repository clone on the Shark cluster, you can use the following command to give group access:
-
-    find -type d -exec chmod 775 {} \;
-    find -type f -exec chmod 664 {} \;
-
-Cloning to a portable disk (NTFS)
----------------------------------
-
-Presuming your disk is attached to your own computer and the repository is on
-the Shark cluster, you can use the following commands.
-
-    git clone ssh://shark/path/to/project/my-project
-    cd my-project
-
-For some reason `annex-ignore` is set to `true`, we need to set it to `false`.
-
-    git config remote.origin.annex-ignore false
-
-Set the repository to *direct mode* to prevent making symlinks, otherwise it
-will be very difficult for windows users to access the files.
-
-    git annex direct
-
-SSH caching seems to be broken on NTFS.
-
-    git config annex.ssh-options "-S /tmp/ssh_mux_%h_%p_%r"
-
-Or alternatively, disable SSH caching all together (slow when working with a
-large number of files).
-
-    git config annex.sshcaching false
-
-Get the content.
-
-    git annex get .
+[PLINK 2.0 alpha](https://www.cog-genomics.org/plink/2.0/)
