@@ -138,11 +138,16 @@ H53KHCCXY       5       CCTTC   CCAG    WUR_175 SD      WUR     BUXTON_WUR_AseI_
 
 ##### Execute the pipeline
 
-Make sure that you are in the executive directory `analysis` and modify and execute the scripts in the following order:
+Execute the following commands:
 
 ```bash
+# make some links to python files
+bash links.sh
+
+# change directory to analysis
 cd analysis
 
+# open the demultiplex.sh script
 nano demultiplex.sh
 # adjust the --r1, --r2, --barcodes flags accordingle to your input names. Choose a name for --output_dir. Close nano with Ctrl+x
 # execute the bash script
@@ -153,13 +158,13 @@ nano make_reference.sh
 bash make_reference.sh
 
 nano mapping_variant_calling.sh
-# # adjust all paths accordingly to your choices from the previous step, except path to --tmpdir
+# adjust all paths accordingly to your choices from the previous step, except path to --tmpdir
 bash mapping_variant_calling.sh
 ```
 
 #### Test data
 
-You can access, copy or link test data from /data/tutorials/epiGBS/test_data/ and run the pipeline. 
+You can access, copy or link test data from /data/tutorials/epiGBS/test_data/ and run the pipeline.
 
 More Reading
 ------------------
