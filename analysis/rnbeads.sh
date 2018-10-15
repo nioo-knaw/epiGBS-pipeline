@@ -1,0 +1,1 @@
+../src/epiGBS/rnbeads.sh
