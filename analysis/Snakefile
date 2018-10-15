@@ -1,0 +1,15 @@
+# This snakefile parallelizes the demultiplexing of multiple files.
+# Can be further developed.
+# Can be executed with
+# snakemake -j <number of files> demultiplex_test_data/{S1, S2, S3, ... ,SX}.stats.tsv
+rule demultiplex:
+    input:
+        fw="../data/{sample}.R1.fq.gz",
+        rev="../data/{sample}.R2.fq.gz"
+    output:
+        stat="demultiplex_test_data/{sample}.stats.tsv",
+        nomatch1="demultiplex_test_data/no-match.{sample}.R1.fastq.gz",
+        nomatch2="demultiplex_test_data/no-match.{sample}.R2.fastq.gz",
+    shell:
+        "python2 ../src/epiGBS/demultiplex.py --r1_in {input.fw} --r2_in {input.rev} --barcodes ../data/barcodes.tsv --output-dir demultiplex_test_data --addRG -d --nomatch1 {output.nomatch1} --nomatch2 {output.nomatch2} --stat {output.stat}"
+
