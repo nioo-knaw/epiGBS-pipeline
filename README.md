@@ -153,6 +153,8 @@ nano demultiplex.sh
 # execute the bash script
 bash demultiplex.sh
 
+# if you have a large fastq input file, demultiplexing will take long. Use the Snakefile instead.
+
 nano make_reference.sh
 # adjust all paths accordingly to your choices from the previous step
 bash make_reference.sh
