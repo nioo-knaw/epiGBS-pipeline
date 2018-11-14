@@ -1,7 +1,7 @@
 # This snakefile parallelizes the demultiplexing of multiple files.
 # Can be further developed.
 # Can be executed with
-# snakemake -j <number of files> demultiplex_test_data/{S1, S2, S3, ... ,SX}.stats.tsv
+# snakemake -j <number of files> demultiplex_test_data/{S1,S2,S3,...,SX}.stats.tsv
 rule demultiplex:
     input:
         fw="../data/{sample}.R1.fq.gz",
