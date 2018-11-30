@@ -3,7 +3,6 @@ Contents
 
 * [How to use this file](#how-to-use-this-file)
 * [Introduction](#introduction)
-* [Login on the server](#login-on-the-server)
 * [Copying the pipeline](#copying-the-pipeline)
 * [Directories](#directories)
 * [Prerequisites](#prerequisites)
@@ -38,11 +37,6 @@ This pipeline is cloned from https://github.com/thomasvangurp/epiGBS and adapted
 The original reference is accessible [here](https://www.nature.com/articles/nmeth.3763).
 
 
-Login on the server
-------------------
-
-If you will login to the bioinformatics server for the first time, please contact the BU or refer to the tutorial on gitlab (https://gitlab.bioinf.nioo.knaw.nl/tutorials/server-login) or download the corresponding .pdf from the left hand site on the intranet (https://intranet.nioo.knaw.nl/en/bioinformatics-unit).
-
 Copying the pipeline
 ------------------
 
@@ -51,7 +45,7 @@ To start a new analysis project based on this pipeline, follow the following ste
 - Clone and rename the pipeline-skeleton from our GitLab server by typing in the terminal. Replace <name> by your NIOO login-name. Cloning will only work, if you have logged in to gitlab at least once before:
 
 ```
-git clone https://gitlab.bioinf.nioo.knaw.nl/pipelines/epiGBS.git
+https://github.com/nioo-knaw/epiGBS-pipeline.git
 ```
 
 - Enter `epiGBS` and download epiGBS code
@@ -163,10 +157,6 @@ nano mapping_variant_calling.sh
 # adjust all paths accordingly to your choices from the previous step, except path to --tmpdir
 bash mapping_variant_calling.sh
 ```
-
-#### Test data
-
-You can access, copy or link test data from /data/tutorials/epiGBS/test_data/ and run the pipeline.
 
 More Reading
 ------------------
