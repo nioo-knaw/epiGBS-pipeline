@@ -82,7 +82,20 @@ This is the directory, where you will analyse your data and all output will be g
 Prerequisites
 ------------------
 
-You have to install different dependencies using conda before starting the pipeline for the first time:
+The following system dependencies are required:
+- git 
+- zlib1g 
+- zlib1g-dev
+- bzip2 
+- python-pip 
+- python-dev 
+- pigz 
+- libfreetype6-dev 
+- pkg-config 
+- gfortran
+- liblapack-dev
+
+Next to that, you have to install different dependencies using [conda](https://conda.io/docs/) before starting the pipeline for the first time:
 
 ```
 conda env create -f environment.yaml
